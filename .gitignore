@@ -11,14 +11,14 @@ public class Driver
 		Driver.printIntArray(arrayOfNumbers);
 	}
 
-	static void mergeSort1(Comparable [] ar)
+	static void mergeSort1(Integer [] ar)
 	{
-		Comparable[] temp = new Comparable[ar.length];
+		Integer[] temp = new Integer[ar.length];
 		Driver.mergeSort0(ar, temp,  0,  ar.length - 1);
 	}
 
 
-	static void mergeSort0(Comparable [] a, Comparable [] temp, int leftBegin, int rightEnd)
+	static void mergeSort0(Integer [] a, Integer [] temp, int leftBegin, int rightEnd)
 	{
 		if( leftBegin < rightEnd )
 		{
@@ -29,7 +29,7 @@ public class Driver
 		}
 	}
 
-	static void merge(Comparable[] ar, Comparable[] temp, int left, int right, int rightEnd )
+	static void merge(Integer[] ar, Integer[] temp, int left, int right, int rightEnd )
 	{
 	    int leftEnd = right - 1;
 	    int x = left;
