@@ -4,69 +4,61 @@ public class Driver
 {
 	public static void main(String[] args)
 	{
-		Integer[] arrayOfNumbers = new Integer[5];
+		Integer[] arrayOfNumbers = new Integer[10];
 		Driver.fillArrayWithRandomInts(arrayOfNumbers);
 		Driver.printIntArray(arrayOfNumbers);
-		Driver.mergeSort(arrayOfNumbers);
+		Driver.mergeSort1(arrayOfNumbers);
 		Driver.printIntArray(arrayOfNumbers);
 	}
 
-	static void mergeSort(Comparable [] a)
+	static void mergeSort1(Comparable [] ar)
 	{
-		Comparable[] tmp = new Comparable[a.length];
-		Driver.mergeSort(a, tmp,  0,  a.length - 1);
+		Comparable[] temp = new Comparable[ar.length];
+		Driver.mergeSort0(ar, temp,  0,  ar.length - 1);
 	}
 
 
-	static void mergeSort(Comparable [] a, Comparable [] tmp, int left, int right)
+	static void mergeSort0(Comparable [] a, Comparable [] temp, int leftBegin, int rightEnd)
 	{
-		if( left < right )
+		if( leftBegin < rightEnd )
 		{
-			int center = (left + right) / 2;
-			Driver.mergeSort(a, tmp, left, center);
-			Driver.mergeSort(a, tmp, center + 1, right);
-			Driver.merge(a, tmp, left, center + 1, right);
+			int center = (leftBegin + rightEnd) / 2;
+			Driver.mergeSort0(a, temp, leftBegin, center);
+			Driver.mergeSort0(a, temp, center + 1, rightEnd);
+			Driver.merge(a, temp, leftBegin, center + 1, rightEnd);
 		}
 	}
 
-	static void merge(Comparable[] a, Comparable[] tmp, int left, int right, int rightEnd )
+	static void merge(Comparable[] ar, Comparable[] temp, int left, int right, int rightEnd )
 	{
 	    int leftEnd = right - 1;
-	    int k = left;
+	    int x = left;
 	    int num = rightEnd - left + 1;
 
 	    while(left <= leftEnd && right <= rightEnd)
-	        if(a[left].compareTo(a[right]) <= 0)
-	            tmp[k++] = a[left++];
+	    {
+	        if(ar[left].compareTo(ar[right]) <= 0)
+	            temp[x++] = ar[left++];
 	        else
-	            tmp[k++] = a[right++];
-
-	        while(left <= leftEnd)  
-	            tmp[k++] = a[left++];
-
-	        while(right <= rightEnd)  
-	            tmp[k++] = a[right++];
-
-	        for(int i = 0; i < num; i++, rightEnd--)
-	            a[rightEnd] = tmp[rightEnd];
+	            temp[x++] = ar[right++];
 	    }
-	    
-	static void sortArray(Integer[] values)
-	{
-	    for (int x = values.length / 2; x > 0; x = x == 2 ? 1 : (int) (x / 2.2))            
-	        {
-	            for (int i = x; i < values.length; i++)
-	            {
-	                Integer array = values[i];
-	                int j = i;
-	                for (;j >= x && array.compareTo(values[j-x]) < 0; j -= x)
-	                {
-	                    values[j] = values[j - x];
-	                }
-	                values[j] = array;
-	            }
-	        }
+
+	    while(left <= leftEnd)  
+	    {
+	        temp[x++] = ar[left++];
+	    }
+
+	    while(right <= rightEnd)  
+	    {
+	    	temp[x++] = ar[right++];
+	    }
+
+	    for(int i = 0; i < num; i++, rightEnd--)
+	    {
+	            ar[rightEnd] = temp[rightEnd];
+	    }
 	}
+	    
 	
 	static void fillArrayWithRandomInts(Integer[] ar)
 	{
